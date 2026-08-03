@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convite de Casamento - Gracilene e Ualison</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- TELA 1: ENVELOPE -->
+    <div id="tela-envelope" class="tela ativa">
+      <img src="img/envelope.jpg" alt="Envelope" class="img-fundo">
+      <!-- Hotspot do Selo de Cordeiro/Coração no Centro -->
+      <button class="hotspot hotspot-selo" onclick="abrirConvite()" title="Clique para abrir"></button>
+    </div>
+
+    <!-- TELA 2: CONVITE PRINCIPAL -->
+    <div id="tela-convite" class="tela">
+      <img src="img/convte.jpg" alt="Convite de Casamento" class="img-fundo">
+      
+      <!-- Botão Localização -->
+      <a href="https://maps.app.goo.gl/zRUE6LKJYwAXYnCcA" 
+         target="_blank" 
+         class="hotspot hotspot-localizacao" 
+         title="Ver Localização"></a>
+
+      <!-- Botão Confirmação de Presença -->
+      <a href="https://wa.me/5594988154523?text=Com%20todo%20o%20carinho%20do%20mundo,%20confirmo%20minha%20presen%C3%A7a!%20Vai%20ser%20um%20prazer%20imenso%20ver%20o%20sim%20da%20Gracilene%20e%20do%20Ualison.%20J%C3%A1%20estou%20na%20contagem%20regressiva!%E2%9D%A4%EF%B8%8F" 
+         target="_blank" 
+         class="hotspot hotspot-rsvp" 
+         title="Confirmar Presença"></a>
+
+      <!-- Botão Lista de Presentes -->
+      <button class="hotspot hotspot-presentes" onclick="abrirPresentes()" title="Ver Lista de Presentes"></button>
+    </div>
+
+    <!-- TELA 3: LISTA DE PRESENTES / PIX -->
+    <div id="tela-presentes" class="tela">
+      <img src="img/presente.jpg" alt="Lista de Presentes" class="img-fundo">
+
+      <!-- Área Clicável no QR Code para copiar o Pix -->
+      <button class="hotspot hotspot-qrcode" onclick="copiarPix()" title="Clique para copiar a chave Pix"></button>
+
+      <!-- Botão Voltar para o Convite -->
+      <button class="btn-voltar" onclick="voltarConvite()">← Voltar ao Convite</button>
+    </div>
+
+  </div>
+
+  <!-- Notificação Flutuante ao Copiar o PIX -->
+  <div id="toast" class="toast">Chave Pix copiada com sucesso!</div>
+
+  <script>
+    function abrirConvite() {
+      document.getElementById('tela-envelope').classList.remove('ativa');
+      document.getElementById('tela-convite').classList.add('ativa');
+    }
+
+    function abrirPresentes() {
+      document.getElementById('tela-convite').classList.remove('ativa');
+      document.getElementById('tela-presentes').classList.add('ativa');
+    }
+
+    function voltarConvite() {
+      document.getElementById('tela-presentes').classList.remove('ativa');
+      document.getElementById('tela-convite').classList.add('ativa');
+    }
+
+    function copiarPix() {
+      const pixCode = "00020126330014BR.GOV.BCB.PIX0111856895052345204000053039865802BR5901N6001C62070503***63045587";
+      navigator.clipboard.writeText(pixCode).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('exibir');
+        setTimeout(() => {
+          toast.classList.remove('exibir');
+        }, 3000);
+      });
+    }
+  </script>
+</body>
+</html>
